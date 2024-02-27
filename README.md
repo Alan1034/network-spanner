@@ -5,7 +5,18 @@
 Provide various tools for front-end network
 
 
+使用usage:
 
+import { HTTPStatusTrans } from "network-spanner"
+
+/**
+ * @description: HTTPStatusTrans:传入HTTP状态码，传出对应的中英文描述
+ * afferent http status, return corresponding EN CN description
+ * @return { EN, CN }
+ */
+const { EN, CN } = HTTPStatusTrans(status)
+
+console.error(`${err.url},${EN},${CN},${status}`)
     
 
 参考资料references：
