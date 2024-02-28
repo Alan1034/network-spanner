@@ -1,8 +1,8 @@
 import legacy from '@vitejs/plugin-legacy'
 import { fileURLToPath } from 'url'
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+// import vue from '@vitejs/plugin-vue'
+// import vueJsx from '@vitejs/plugin-vue-jsx'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import path from 'path';
 const __filenameNew = fileURLToPath(import.meta.url)
@@ -64,8 +64,8 @@ export default defineConfig(({ command, mode }) => {
         }),
         apply: 'build',
       },
-      vue(),
-      vueJsx(),
+      // vue(),
+      // vueJsx(),
     ],
     css: {
       preprocessorOptions: {
