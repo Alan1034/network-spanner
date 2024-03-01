@@ -2,7 +2,7 @@
   "name": "network-spanner",
   "version": "1.1.0",
   "description": "",
-  "main": "./dist/index.js",
+  "main": "./dist/src/index.js",
   "scripts": {
     "build": "cross-env CURRENT_ENV=prod run-p type-check && run-p build-only",
     "test:e2e": "playwright test",
@@ -41,7 +41,7 @@
     "type": "git",
     "url": "git+https://github.com/Alan1034/network-spanner"
   },
-  "typings": "./dist/index.d.ts",
+  "typings": "./dist/src/index.d.ts",
   "files": [
     "/dist"
   ]
