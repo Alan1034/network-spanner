@@ -11,4 +11,4 @@
 import { updateMain } from "./initialization";
 
 
-updateMain("./dist/index.js")
+updateMain("./dist/src/index.js")

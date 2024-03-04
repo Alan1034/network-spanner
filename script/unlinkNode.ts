@@ -1,11 +1,11 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2023-11-10 09:39:59
- * @LastEditTime: 2023-11-27 10:22:28
+ * @LastEditTime: 2024-03-01 11:32:42
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: unlink处理流程
- * @FilePath: \VueNpmFrame\script\unlinkNode.ts
+ * @FilePath: \network-spanner\script\unlinkNode.ts
  * 
  */
 import path from "path";
@@ -18,8 +18,8 @@ const updateMain = () => {
   try {
     const packageTxt = fs.readFileSync(path.join(__dirnameNew, '../package.json'), 'utf8');
     const packageJson = JSON.parse(packageTxt);
-    const cjsDir = "./dist/index.js"
-    const types = "./dist/index.d.ts"
+    const cjsDir = "./dist/src/index.js"
+    const types = "./dist/src/index.d.ts"
     delete packageJson.type
     packageJson.main = cjsDir
     packageJson.typings = types
