@@ -1,7 +1,7 @@
 /*
  * @Author: 陈德立*******419287484@qq.com
  * @Date: 2024-02-27 15:43:05
- * @LastEditTime: 2024-02-27 16:04:49
+ * @LastEditTime: 2024-03-04 10:35:05
  * @LastEditors: 陈德立*******419287484@qq.com
  * @Github: https://github.com/Alan1034
  * @Description: 
@@ -32,6 +32,9 @@ export const HTTPStatus = {
 
 export const HTTPStatusTransFunc = (Status: string | number) => {
   const state = Number(Status)
-  const stateInfo=HTTPStatus[state]
+  const stateInfo = HTTPStatus[state]
+  if (!stateInfo) {
+    return {}
+  }
   return stateInfo
 }
