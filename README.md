@@ -18,13 +18,13 @@ import { HTTPStatusTrans } from "network-spanner"
  */
 
  
- 
+
  ```
  const { EN = '', CN = "" } = HTTPStatusTrans(status)
  
- console.error(`${err.url},${EN},${CN},${status}`)
+ console.error(`${err.url},${EN},${CN},${err.error?.message || err.statusText}`)
  ```
- 
+
  ​    
 
 参考资料references：
