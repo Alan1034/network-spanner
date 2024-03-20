@@ -126,7 +126,7 @@ import { MiniprogramErrno } from "network-spanner"
   fail (err) {
     const { EN, CN } = MiniprogramErrno(err.errno)
     wx.showModal({
-      content: `${CN || EN}`,
+      content: `${CN || EN || err.errMsg}`,
       showCancel: false,
     })
   }
