@@ -11,3 +11,7 @@
 import { HTTPStatusTransFunc } from './components/HTTPStatusTrans/index';
 
 export const HTTPStatusTrans = HTTPStatusTransFunc
+
+import { MiniprogramErrnoFunc } from './components/MiniprogramErrno/index';
+
+export const MiniprogramErrno = MiniprogramErrnoFunc
