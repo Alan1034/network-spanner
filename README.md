@@ -144,7 +144,9 @@ somePromise: Function // 队列排队结束时的回调函数，请传入同步�
 
 delay?: number //当不支持window.requestAnimationFrame时可以自定义setTimeout的延迟时间，默认是1000
 
-
+```
+MessageQueue({ value, somePromise: this.refreshList })
+```
 
 安装：npm i network-spanner
 
