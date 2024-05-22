@@ -1,7 +1,6 @@
-# network-spanner
+# 提供各种前端网络需要用到的工具 Provide various tools for front-end network
 
-## 提供各种前端网络需要用到的工具 Provide various tools for front-end network
-
+## 传入HTTP状态码，传出对应的中英文描述
 
 使用usage:
 
@@ -132,13 +131,13 @@ import { MiniprogramErrno } from "network-spanner"
   }
 ```
 
-# 消息队列，用于传入多个数据（如用户多次拖拽）后直接展示最新数据
+## 消息队列，用于传入多个数据（如用户多次拖拽）会触发最后一个（直接展示最新数据）
 
 使用usage:
 
 import { MessageQueue } from "network-spanner"
 
-value: any // 队列的内容，会作为传入回调函数的参数
+value: any // 队列传入回调函数的参数
 
 somePromise: Function // 队列排队结束时的回调函数，请传入同步函数或者有回调的异步函数
 
