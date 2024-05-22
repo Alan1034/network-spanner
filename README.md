@@ -137,7 +137,7 @@ import { MiniprogramErrno } from "network-spanner"
 
 import { MessageQueue } from "network-spanner"
 
-value: any // 队列传入回调函数的参数
+value: any // 队列传入somePromise函数的参数
 
 somePromise: Function // 队列排队结束时的回调函数，请传入同步函数或者有回调的异步函数
 
