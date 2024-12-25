@@ -174,7 +174,10 @@ import { ObjectStoreInUrl } from "network-spanner"
  **/*
 
 ```
-ObjectStoreInUrl.paramsToQuery(params)
+const searchParams = ObjectStoreInUrl.paramsToQuery(params)
+this.$router.push({
+  query: { ...searchParams },
+});
 ```
 
 */***
