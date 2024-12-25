@@ -36,7 +36,9 @@ const queryToData = (query = {}) => {
     if (Object.prototype.hasOwnProperty.call(query, key)) {
       const element = query[key];
       try {
-        query[key] = JSON.parse(element);
+        if (/[{]+/g.test(element) && /[}]+/g.test(element)) {
+          query[key] = JSON.parse(element);
+        }
       } catch (error) {
         // console.warn(error);
       }
