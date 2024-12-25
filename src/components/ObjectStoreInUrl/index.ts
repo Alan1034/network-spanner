@@ -28,7 +28,7 @@ const paramsToQuery = (params = {}) => {
 
 /**
  * @description: URL query的值转化成对象
- * @param {*} params
+ * @param {*} query
  * @return {*}
  */
 const queryToData = (query = {}) => {

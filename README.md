@@ -137,7 +137,9 @@ import { MiniprogramErrno } from "network-spanner"
 
 使用usage:
 
+```
 import { MessageQueue } from "network-spanner"
+```
 
 value?: any // 队列传入somePromise函数的参数
 
@@ -152,3 +154,40 @@ MessageQueue({ value, somePromise: this.refreshList })
 安装：npm i network-spanner
 
 install: npm i network-spanner
+
+## *在URL中储存对象*
+
+使用usage:
+
+```
+import { ObjectStoreInUrl } from "network-spanner"
+```
+
+*/***
+
+ *** *@description**: 对象值里的对象转化成字符串
+
+ *** *@param* *{\*}* *params*
+
+ *** *@return* *{\*}*
+
+ **/*
+
+```
+ObjectStoreInUrl.paramsToQuery(params)
+```
+
+*/***
+
+ *** *@description**: URL query的值转化成对象
+
+ *** *@param* *{\*}* *query*
+
+ *** *@return* *{\*}*
+
+ **/*
+
+```
+ObjectStoreInUrl.queryToData(this.$route?.query)
+```
+
