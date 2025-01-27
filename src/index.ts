@@ -24,3 +24,7 @@ import ObjectStoreInUrlFuncs from './components/ObjectStoreInUrl/index';
 
 export const ObjectStoreInUrl = ObjectStoreInUrlFuncs
 
+import HandleParamsDataFunc from './components/HandleParamsData/index';
+
+export const HandleParamsData = HandleParamsDataFunc
+
