@@ -28,3 +28,7 @@ import HandleParamsDataFunc from './components/HandleParamsData/index';
 
 export const HandleParamsData = HandleParamsDataFunc
 
+import TableColumnFunc from './components/RenderCom/TableColumn';
+
+export const TableColumn = TableColumnFunc
+

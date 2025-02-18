@@ -194,3 +194,16 @@ this.$router.push({
 ObjectStoreInUrl.queryToData(this.$route?.query)
 ```
 
+## Vue2的自定义组件生成函数
+
+```
+import { TableColumn } from "network-spanner"
+
+<TableColumn v-if="item.render" :renderFunction="item.render" :item="formData" />
+```
+
+```
+renderFunction：(item: any) => VNode | String;
+item：传入renderFunction函数的参数
+```
+
