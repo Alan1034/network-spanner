@@ -9,8 +9,8 @@
  * @FilePath: \network-spanner\src\components\OpenDownload\index.ts
  */
 
-import VConsole from "vconsole";
-const vConsole = new VConsole();
+// import VConsole from "vconsole";
+// const vConsole = new VConsole();
 export const is_neizhi = () => {
   var ua = navigator?.userAgent.toLowerCase();
   if (ua.match(/MicroMessenger/i)) {
