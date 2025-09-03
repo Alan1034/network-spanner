@@ -32,3 +32,7 @@ import TableColumnFunc from './components/RenderCom/TableColumn';
 
 export const TableColumn = TableColumnFunc
 
+import OpenDownloadFunc from './components/OpenDownload/index';
+
+export const OpenDownload = OpenDownloadFunc
+

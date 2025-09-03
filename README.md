@@ -207,3 +207,41 @@ renderFunction：(item: any) => VNode | String;
 item：传入renderFunction函数的参数
 ```
 
+## 在分享网页中调起或者下载APP
+
+![image-20211116115258955](https://raw.githubusercontent.com/Alan1034/PicturesServer/main/PicGo_imgs/wechat_2025-09-03_151636_748.png)
+
+```
+import { OpenDownload } from 'network-spanner'
+import { loadMaskIns } from 'variable-loading-mask'
+import OpenInSysBrowser from '@/assets/img/openInSysBrowser.png'
+
+const { goExperience } = OpenDownload
+export const goExperienceFunc = (params: any) => {
+  const { queryString = '' } = params || {}
+  goExperience({
+    scheme: 'XXX://XXX.XXX.com' + queryString,
+    downloadHref: 'https://XXX.XXX.com/download/XXX.apk',
+    appBrowserCallback: () => {
+      const mask = loadMaskIns({
+        maskType: 'any',
+        imgSlot: {
+          src: OpenInSysBrowser,
+          alt: '打开系统浏览器',
+          style: { width: '215px', height: '95px', marginLeft: '100px' }
+        },
+        tools: false
+      })
+      mask.show()
+    }
+  })
+}
+
+      <button class="download-btn" @click="goExperienceFunc(
+        { queryString: `?inviteCode=${this.inviteCode}` }
+      )">
+        <img :src="Download" alt="download" class="icon-cloud" />
+        <span>下载APP</span>
+      </button>
+```
+
