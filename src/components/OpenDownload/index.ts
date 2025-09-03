@@ -25,20 +25,18 @@ export const is_neizhi = () => {
 
 export const goExperience = (params: any) => {
   const {
-    scheme,
-    downloadHref,
-    weixinCallback,
-    qqCallback,
-    alipayCallback,
-    appBrowserCallback,
-
+    scheme = "",
+    downloadHref = "",
+    weixinCallback = () => {},
+    qqCallback = () => {},
+    alipayCallback = () => {},
+    appBrowserCallback = () => {},
   } = params || {};
   const u = navigator?.userAgent;
   console.info("browser:", u);
   const appBrowser = is_neizhi();
-
+  console.info("appBrowser:", appBrowser);
   if (appBrowser) {
-
     if (appBrowser === "weixin") {
       weixinCallback();
     } else if (appBrowser === "QQ") {
