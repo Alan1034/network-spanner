@@ -10,11 +10,16 @@
  */
 
 /**
- * @description: 对象值里的对象转化成字符串
+ * @description: 对象值或数组里的对象转化成字符串
  * @param {*} params
  * @return {*}
  */
-const paramsToQuery = (params = {}) => {
+const paramsToQuery = (params: Object | Array<any> = {}) => {
+
+  if (Array.isArray(params) && params.length > 0) {
+    // 是数组
+    return JSON.stringify(params);
+  }
   for (const key in params) {
     if (Object.prototype.hasOwnProperty.call(params, key)) {
       const element = params[key];
@@ -47,4 +52,36 @@ const queryToData = (query = {}) => {
   return query;
 };
 
-export default { paramsToQuery, queryToData };
+/**
+ * @description: 得到URL中的参数(query string)
+ * @return {*} urlParams
+ */
+const getURLParameter = (
+  params = {
+    decode: false,
+  }
+) => {
+  const { decode } = params;
+  const pl = /\+/g;
+  const searchReg = /([^&=]+)=?([^&]*)/g;
+  const toDecode = (s) => {
+    return decodeURIComponent(s.replace(pl, " "));
+  };
+
+  const query = window.location.search.substring(1);
+  const urlParams = {};
+  const exec = () => {
+    const match = searchReg.exec(query);
+    if (match) {
+      decode
+        ? (urlParams[toDecode(match[1])] = toDecode(match[2]))
+        : (urlParams[match[1]] = match[2]);
+      exec();
+    }
+    return urlParams;
+  };
+  exec();
+  return urlParams;
+};
+
+export default { paramsToQuery, queryToData, getURLParameter };

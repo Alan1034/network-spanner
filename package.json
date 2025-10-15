@@ -2,7 +2,7 @@
   "name": "network-spanner",
   "version": "1.2.16",
   "description": "",
-  "main": "./dist/index.umd.cjs",
+  "main": "./src/index.ts",
   "scripts": {
     "build": "cross-env CURRENT_ENV=prod run-p type-check && run-p build-only",
     "test:e2e": "playwright test",
@@ -41,22 +41,10 @@
     "type": "git",
     "url": "git+https://github.com/Alan1034/network-spanner"
   },
-  "typings": "./dist/index.d.ts",
+  "typings": "./publish/index.d.ts",
   "type": "module",
   "dependencies": {
     "general-basic-indexdb": "^1.0.3",
     "vconsole": "^3.15.1"
-  },
-  "module": "./dist/index.js",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.umd.cjs",
-      "types": "./dist/index.d.ts"
-    },
-    "./style": "./dist/style.css"
-  },
-  "files": [
-    "/dist"
-  ]
+  }
 }

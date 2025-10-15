@@ -165,7 +165,7 @@ import { ObjectStoreInUrl } from "network-spanner"
 
 */***
 
- *** *@description**: 对象值里的对象转化成字符串
+ *** *@description**: 对象值或数组里的对象转化成字符串
 
  *** *@param* *{\*}* *params*
 
@@ -192,6 +192,21 @@ this.$router.push({
 
 ```
 ObjectStoreInUrl.queryToData(this.$route?.query)
+```
+
+*/**
+ * @description: 得到URL中的参数(query string)
+ * @param {Object} options
+ * @param {boolean} options.decode 是否decodeURIComponent解码，默认false
+ * @return {*} urlParams
+ */
+
+```
+ObjectStoreInUrl.getURLParameter()
+
+组合使用
+ObjectStoreInUrl.queryToData(ObjectStoreInUrl.getURLParameter({ decode: true }))
+
 ```
 
 ## Vue2的自定义组件生成函数
