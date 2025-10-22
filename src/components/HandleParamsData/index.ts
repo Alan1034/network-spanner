@@ -1,3 +1,17 @@
+/*
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2025-10-15 15:46:36
+ * @LastEditTime: 2025-10-22 17:30:06
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description: 
+ * 
+ * react调用时vm传入props
+ * vue调用时vm传入this
+ * 
+ * @FilePath: /network-spanner/src/components/HandleParamsData/index.ts
+ * 
+ */
 /** @format */
 import ObjectStoreInUrl from "../ObjectStoreInUrl/index";
 import { Schemas, HandleTable } from "general-basic-indexdb";
@@ -7,7 +21,9 @@ const { formSchema } = Schemas;
 const makeParamsByType = async (params, vm) => {
   if (vm.parametersType === "url") {
     params = {
-      ...ObjectStoreInUrl.queryToData(vm.$route?.query),
+      ...ObjectStoreInUrl.queryToData(
+        ObjectStoreInUrl.getURLParameter({ decode: true })
+      ),
       ...params,
     };
   }
@@ -15,7 +31,7 @@ const makeParamsByType = async (params, vm) => {
   if (vm.parametersType === "indexDB") {
     const DBParams = await getData({
       tableName: "formParams",
-      propertiesKey: vm.$route.path || "defQueryParams",
+      propertiesKey: window.location.pathname || "defQueryParams",
       primaryKey: vm.DBPrimaryKey || "default",
       mapDB: formSchema,
     });
@@ -36,7 +52,7 @@ const saveParamsByType = async (params, vm) => {
   if (vm.parametersType === "indexDB") {
     await handleData({
       tableName: "formParams",
-      propertiesKey: vm.$route.path || "defQueryParams",
+      propertiesKey: window.location.pathname || "defQueryParams",
       parameter: { ...params },
       primaryKey: vm.DBPrimaryKey || "default",
       mapDB: formSchema,
@@ -88,14 +104,14 @@ const initQueryParams = ({ vm = <any>{} }) => {
   if (vm.parametersType === "url") {
     queryParams = {
       ...queryParams,
-      ...ObjectStoreInUrl.queryToData(vm.$route?.query),
+      ...ObjectStoreInUrl.queryToData(ObjectStoreInUrl.getURLParameter({ decode: true })),
     };
   }
   if (vm.parametersType === "indexDB") {
     getData(
       {
         tableName: "formParams",
-        propertiesKey: vm.$route.path || "defQueryParams",
+        propertiesKey: window.location.pathname || "defQueryParams",
         primaryKey: vm.DBPrimaryKey || "default",
         mapDB: formSchema,
       },

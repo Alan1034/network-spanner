@@ -69,7 +69,7 @@ const getURLParameter = (
   };
 
   const query = window.location.search.substring(1);
-  const urlParams = {};
+  const urlParams = <any>{};
   const exec = () => {
     const match = searchReg.exec(query);
     if (match) {
