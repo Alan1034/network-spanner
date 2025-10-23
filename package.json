@@ -1,6 +1,6 @@
 {
   "name": "network-spanner",
-  "version": "1.2.17",
+  "version": "1.2.18",
   "description": "",
   "main": "./dist/index.umd.cjs",
   "scripts": {
