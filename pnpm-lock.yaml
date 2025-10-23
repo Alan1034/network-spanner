@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       general-basic-indexdb:
-        specifier: ^1.0.3
-        version: 1.0.4
+        specifier: ^1.0.5
+        version: 1.0.5
       vconsole:
         specifier: ^3.15.1
         version: 3.15.1
@@ -1243,8 +1243,8 @@ packages:
   functions-have-names@1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
 
-  general-basic-indexdb@1.0.4:
-    resolution: {integrity: sha512-ec2oKrMAtOtPib+8TR66nfV4LswF5vnmMjzRW8SLwn9dEQqJ+slNhFuosyJLXojXXHx/YYlj3ExfWiffctyn1A==}
+  general-basic-indexdb@1.0.5:
+    resolution: {integrity: sha512-rC72qZuNrdr9Z6jj+m8d5KupL/SZG+dbzR32YisvqBp0LrEO87Rvyq+b1CsZKIDjOmlx37sfkhQsupg82Xrq5Q==}
 
   generator-function@2.0.1:
     resolution: {integrity: sha512-SFdFmIJi+ybC0vjlHN0ZGVGHc3lgE0DxPAT0djjVg+kjOnSqclqmj0KQ7ykTOLP6YxoqOvuAODGdcHJn+43q3g==}
@@ -3329,7 +3329,7 @@ snapshots:
 
   functions-have-names@1.2.3: {}
 
-  general-basic-indexdb@1.0.4: {}
+  general-basic-indexdb@1.0.5: {}
 
   generator-function@2.0.1: {}
 
