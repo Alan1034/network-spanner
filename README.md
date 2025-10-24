@@ -178,6 +178,17 @@ const searchParams = ObjectStoreInUrl.paramsToQuery(params)
 this.$router.push({
   query: { ...searchParams },
 });
+
+手工拼接
+const urlParams = ObjectStoreInUrl.getURLParameter({ decode: true });
+const paramsObj = ObjectStoreInUrl.paramsToQuery({
+  ...urlParams,
+  ...params,
+});
+window.location.href = `${window.location.origin}${
+  window.location.pathname
+}?${new URLSearchParams(paramsObj as any)}`;
+
 ```
 
 */***

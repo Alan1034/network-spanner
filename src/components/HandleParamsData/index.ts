@@ -1,17 +1,17 @@
-/*
- * @Author: 陈德立*******419287484@qq.com
- * @Date: 2025-10-15 15:46:36
- * @LastEditTime: 2025-10-22 17:30:06
- * @LastEditors: 陈德立*******419287484@qq.com
- * @Github: https://github.com/Alan1034
- * @Description: 
- * 
+/**
  * react调用时vm传入props
  * vue调用时vm传入this
- * 
+ *
+ * @format
+ * @Author: 陈德立*******419287484@qq.com
+ * @Date: 2025-10-15 15:46:36
+ * @LastEditTime: 2025-10-24 11:29:09
+ * @LastEditors: 陈德立*******419287484@qq.com
+ * @Github: https://github.com/Alan1034
+ * @Description:
  * @FilePath: /network-spanner/src/components/HandleParamsData/index.ts
- * 
  */
+
 /** @format */
 import ObjectStoreInUrl from "../ObjectStoreInUrl/index";
 import { Schemas, HandleTable } from "general-basic-indexdb";
@@ -45,9 +45,14 @@ const makeParamsByType = async (params, vm) => {
 
 const saveParamsByType = async (params, vm) => {
   if (vm.parametersType === "url") {
-    await vm.$router.push({
-      query: ObjectStoreInUrl.paramsToQuery({ ...params }),
+    const urlParams = ObjectStoreInUrl.getURLParameter({ decode: true });
+    const paramsObj = ObjectStoreInUrl.paramsToQuery({
+      ...urlParams,
+      ...params,
     });
+    window.location.href = `${window.location.origin}${
+      window.location.pathname
+    }?${new URLSearchParams(paramsObj as any)}`;
   }
   if (vm.parametersType === "indexDB") {
     await handleData({
@@ -104,7 +109,9 @@ const initQueryParams = ({ vm = <any>{} }) => {
   if (vm.parametersType === "url") {
     queryParams = {
       ...queryParams,
-      ...ObjectStoreInUrl.queryToData(ObjectStoreInUrl.getURLParameter({ decode: true })),
+      ...ObjectStoreInUrl.queryToData(
+        ObjectStoreInUrl.getURLParameter({ decode: true })
+      ),
     };
   }
   if (vm.parametersType === "indexDB") {
@@ -128,9 +135,7 @@ const initQueryParams = ({ vm = <any>{} }) => {
     );
   }
   if (vm.queryWhenReady && vm.parametersType !== "indexDB") {
-    // console.log({ ...vm.queryParams }, "queryParams")
     vm.$nextTick(() => {
-      // console.log({ ...vm.queryParams }, "queryParams112")
       vm.handleQuery({ defaultPageFirst: false });
     });
   }

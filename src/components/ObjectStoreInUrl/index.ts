@@ -15,7 +15,6 @@
  * @return {*}
  */
 const paramsToQuery = (params: Object | Array<any> = {}) => {
-
   if (Array.isArray(params) && params.length > 0) {
     // 是数组
     return JSON.stringify(params);
