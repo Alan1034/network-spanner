@@ -110,7 +110,15 @@ const resetQuery = async ({ vm = <any>{}, dispatchQueryParams }) => {
   }
 
   vm.afterReset();
-  handleQuery({ vm, queryParams: { ...params } });
+  if (vm.handleQuery) {
+    vm.handleQuery();
+  } else {
+    // react
+    if (vm.parametersType === "url") {
+      return;
+    }
+    handleQuery({ vm });
+  }
 };
 
 /** 初始化查询参数 */
@@ -147,10 +155,8 @@ const initQueryParams = ({ vm = <any>{}, dispatchQueryParams }) => {
         }
         if (vm.queryWhenReady) {
           vm.$nextTick(() => {
-            handleQuery({
-              queryParameter: { defaultPageFirst: false },
-              queryParams,
-              vm,
+            vm.handleQuery({
+              defaultPageFirst: false,
             });
           });
         }
@@ -159,10 +165,8 @@ const initQueryParams = ({ vm = <any>{}, dispatchQueryParams }) => {
   }
   if (vm.queryWhenReady && vm.parametersType !== "indexDB") {
     vm.$nextTick(() => {
-      handleQuery({
-        queryParameter: { defaultPageFirst: false },
-        queryParams,
-        vm,
+      vm.handleQuery({
+        defaultPageFirst: false,
       });
     });
   }
