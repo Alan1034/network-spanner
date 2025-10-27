@@ -45,9 +45,9 @@ const makeParamsByType = async (params, vm) => {
 
 const saveParamsByType = async (params, vm) => {
   if (vm.parametersType === "url") {
-    const urlParams = ObjectStoreInUrl.getURLParameter({ decode: true });
+    // const urlParams = ObjectStoreInUrl.getURLParameter({ decode: true });
     const paramsObj = ObjectStoreInUrl.paramsToQuery({
-      ...urlParams,
+      // ...urlParams,
       ...params,
     });
     window.location.href = `${window.location.origin}${
@@ -67,11 +67,16 @@ const saveParamsByType = async (params, vm) => {
 };
 
 /** 搜索按钮操作 */
-const handleQuery = async ({ queryParameter = <any>{}, vm = <any>{} }) => {
+const handleQuery = async ({
+  queryParameter = <any>{},
+  vm = <any>{},
+  queryParams = <any>{},
+}) => {
   queryParameter.defaultPageFirst ??= true;
   const params = { [vm.currentPageKey]: vm.defCurrentPage };
   let searchParams = {
     ...params,
+    ...queryParams,
     ...vm.queryParams,
   };
   searchParams = await makeParamsByType(searchParams, vm);
@@ -88,21 +93,28 @@ const handleQuery = async ({ queryParameter = <any>{}, vm = <any>{} }) => {
 };
 
 /** 重置按钮操作 */
-const resetQuery = async ({ vm = <any>{} }) => {
-  vm.$refs.queryFormRef.resetFields();
+const resetQuery = async ({ vm = <any>{}, dispatchQueryParams }) => {
+  vm?.$refs?.queryFormRef?.resetFields();
   const DBParams = await makeParamsByType({}, vm);
   const params = {
     [vm.currentPageKey]: vm.defCurrentPage,
     [vm.pageSizeKey]: DBParams?.[vm.pageSizeKey] || vm.defPageSize,
   };
   await saveParamsByType(params, vm);
-  vm.queryParams = { ...params };
+  if (dispatchQueryParams) {
+    // react
+    dispatchQueryParams({ data: { ...params } });
+  }
+  if (vm.queryParams) {
+    vm.queryParams = { ...params };
+  }
+
   vm.afterReset();
-  vm.handleQuery();
+  handleQuery({ vm, queryParams: { ...params } });
 };
 
 /** 初始化查询参数 */
-const initQueryParams = ({ vm = <any>{} }) => {
+const initQueryParams = ({ vm = <any>{}, dispatchQueryParams }) => {
   let queryParams = {
     [vm.pageSizeKey]: vm.defPageSize,
   };
@@ -124,11 +136,22 @@ const initQueryParams = ({ vm = <any>{} }) => {
       },
       (DBParams) => {
         if (DBParams) {
-          vm.queryParams = { ...queryParams, ...DBParams };
+          queryParams = { ...queryParams, ...DBParams };
+          if (dispatchQueryParams) {
+            // react
+            dispatchQueryParams({ data: { ...queryParams } });
+          }
+          if (vm.queryParams) {
+            vm.queryParams = { ...queryParams };
+          }
         }
         if (vm.queryWhenReady) {
           vm.$nextTick(() => {
-            vm.handleQuery({ defaultPageFirst: false });
+            handleQuery({
+              queryParameter: { defaultPageFirst: false },
+              queryParams,
+              vm,
+            });
           });
         }
       }
@@ -136,7 +159,11 @@ const initQueryParams = ({ vm = <any>{} }) => {
   }
   if (vm.queryWhenReady && vm.parametersType !== "indexDB") {
     vm.$nextTick(() => {
-      vm.handleQuery({ defaultPageFirst: false });
+      handleQuery({
+        queryParameter: { defaultPageFirst: false },
+        queryParams,
+        vm,
+      });
     });
   }
   return queryParams;
