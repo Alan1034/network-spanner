@@ -223,6 +223,21 @@ ObjectStoreInUrl.queryToData(ObjectStoreInUrl.getURLParameter({ decode: true }))
 ## Vue2的自定义组件生成函数
 
 ```
+import {  DateTools } from 'network-spanner';
+
+// localDate为当前时区的时间，需要转为UTC时间
+//toZero 参数，返回值转为传入值的UTC时间的零点时分秒
+DateTools.toUTCDate(new Date(), 'toZero')
+
+// UTCDate为UTC时间，需要转为当前时区的时间
+//toZero 参数，返回值转为传入值的当前时区的时间的零点时分秒
+DateTools.toLocalDate(UTCDate, 'toZero')
+
+```
+
+## Vue2的自定义组件生成函数
+
+```
 import { TableColumn } from "network-spanner"
 
 <TableColumn v-if="item.render" :renderFunction="item.render" :item="formData" />
