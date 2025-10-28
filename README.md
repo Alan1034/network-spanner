@@ -220,7 +220,7 @@ ObjectStoreInUrl.queryToData(ObjectStoreInUrl.getURLParameter({ decode: true }))
 
 ```
 
-## Vue2的自定义组件生成函数
+## 当前时区的时间和UTC时间的转换
 
 ```
 import {  DateTools } from 'network-spanner';
