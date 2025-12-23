@@ -67,14 +67,17 @@ const getURLParameter = (
     return decodeURIComponent(s.replace(pl, " "));
   };
 
+  const toNumber = (s) => {
+    return Number(s) ? Number(s) : s;
+  };
   const query = window.location.search.substring(1);
   const urlParams = <any>{};
   const exec = () => {
     const match = searchReg.exec(query);
     if (match) {
       decode
-        ? (urlParams[toDecode(match[1])] = toDecode(match[2]))
-        : (urlParams[match[1]] = match[2]);
+        ? (urlParams[toDecode(match[1])] = toNumber(toDecode(match[2])))
+        : (urlParams[match[1]] = toNumber(match[2]));
       exec();
     }
     return urlParams;

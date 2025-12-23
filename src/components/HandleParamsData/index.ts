@@ -45,14 +45,17 @@ const makeParamsByType = async (params, vm) => {
 
 const saveParamsByType = async (params, vm) => {
   if (vm.parametersType === "url") {
-    // const urlParams = ObjectStoreInUrl.getURLParameter({ decode: true });
+    const urlParams = ObjectStoreInUrl.getURLParameter({ decode: true });
     const paramsObj = ObjectStoreInUrl.paramsToQuery({
       // ...urlParams,
       ...params,
     });
-    window.location.href = `${window.location.origin}${
-      window.location.pathname
-    }?${new URLSearchParams(paramsObj as any)}`;
+    if (JSON.stringify(urlParams) !== JSON.stringify(params)) {
+      window.location.href = `${window.location.origin}${
+        window.location.pathname
+      }?${new URLSearchParams(paramsObj as any)}`;
+      return "link";
+    }
   }
   if (vm.parametersType === "indexDB") {
     await handleData({
@@ -72,6 +75,14 @@ const handleQuery = async ({
   vm = <any>{},
   queryParams = <any>{},
 }) => {
+  await new Promise<void>((resolve, reject) => {
+    const intervalId = setInterval(() => {
+      if (vm.getList) {
+        clearInterval(intervalId); // 清除定时器
+        resolve();
+      }
+    }, 300);
+  });
   queryParameter.defaultPageFirst ??= true;
   const params = { [vm.currentPageKey]: vm.defCurrentPage };
   let searchParams = {
@@ -86,7 +97,10 @@ const handleQuery = async ({
       ...params,
     };
   }
-  await saveParamsByType(searchParams, vm);
+  const action = await saveParamsByType(searchParams, vm);
+  if (action === "link") {
+    return;
+  }
   vm.getList({
     ...searchParams,
   });
@@ -100,7 +114,8 @@ const resetQuery = async ({ vm = <any>{}, dispatchQueryParams }) => {
     [vm.currentPageKey]: vm.defCurrentPage,
     [vm.pageSizeKey]: DBParams?.[vm.pageSizeKey] || vm.defPageSize,
   };
-  await saveParamsByType(params, vm);
+  const action = await saveParamsByType(params, vm);
+
   if (dispatchQueryParams) {
     // react
     dispatchQueryParams({ data: { ...params } });
@@ -110,15 +125,10 @@ const resetQuery = async ({ vm = <any>{}, dispatchQueryParams }) => {
   }
 
   vm.afterReset();
-  if (vm.handleQuery) {
-    vm.handleQuery();
-  } else {
-    // react
-    if (vm.parametersType === "url") {
-      return;
-    }
-    handleQuery({ vm });
+  if (action === "link") {
+    return;
   }
+  handleQuery({ vm });
 };
 
 /** 初始化查询参数 */
@@ -154,20 +164,18 @@ const initQueryParams = ({ vm = <any>{}, dispatchQueryParams }) => {
           }
         }
         if (vm.queryWhenReady) {
-          vm.$nextTick(() => {
-            vm.handleQuery({
-              defaultPageFirst: false,
-            });
+          handleQuery({
+            queryParameter: { defaultPageFirst: false },
+            vm,
           });
         }
       }
     );
   }
   if (vm.queryWhenReady && vm.parametersType !== "indexDB") {
-    vm.$nextTick(() => {
-      vm.handleQuery({
-        defaultPageFirst: false,
-      });
+    handleQuery({
+      queryParameter: { defaultPageFirst: false },
+      vm,
     });
   }
   return queryParams;
