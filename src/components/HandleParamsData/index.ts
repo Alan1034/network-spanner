@@ -46,11 +46,12 @@ const makeParamsByType = async (params, vm) => {
 const saveParamsByType = async (params, vm) => {
   if (vm.parametersType === "url") {
     const urlParams = ObjectStoreInUrl.getURLParameter({ decode: true });
-    const paramsObj = ObjectStoreInUrl.paramsToQuery({
-      // ...urlParams,
-      ...params,
-    });
+
     if (JSON.stringify(urlParams) !== JSON.stringify(params)) {
+      const paramsObj = ObjectStoreInUrl.paramsToQuery({
+        // ...urlParams,
+        ...params,
+      });
       window.location.href = `${window.location.origin}${
         window.location.pathname
       }?${new URLSearchParams(paramsObj as any)}`;
@@ -167,6 +168,7 @@ const initQueryParams = ({ vm = <any>{}, dispatchQueryParams }) => {
           handleQuery({
             queryParameter: { defaultPageFirst: false },
             vm,
+            queryParams,
           });
         }
       }
@@ -176,6 +178,7 @@ const initQueryParams = ({ vm = <any>{}, dispatchQueryParams }) => {
     handleQuery({
       queryParameter: { defaultPageFirst: false },
       vm,
+      queryParams,
     });
   }
   return queryParams;
