@@ -14,7 +14,7 @@ export const thirteenxx = {
     "CN": "操作不被允许"
   },
   "1300002": {
-    "EN": "No such file or directory",
+    "EN": "no such file or directory",
     "CN": "找不到文件或目录"
   },
   "1300005": {

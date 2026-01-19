@@ -181,4 +181,24 @@ export const zeroxx = {
     "EN": "wxgame appid privacy api banned",
     "CN": "小游戏隐私接口被封禁，解决方案参考链接"
   },
+    "1032": {
+    "EN": "invalid signature",
+    "CN": "签名无效"
+  },
+  "1033": {
+    "EN": "data size not match",
+    "CN": "列表数据长度不匹配"
+  },
+  "1034": {
+    "EN": "same user",
+    "CN": "是同一用户"
+  },
+  "1035": {
+    "EN": "not wechat user",
+    "CN": "非微信用户"
+  },
+  "1036": {
+    "EN": "invalid username",
+    "CN": "非法的username"
+  },
 }

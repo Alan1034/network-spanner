@@ -129,4 +129,68 @@ export const sevenxx = {
     "EN": "can not use sandbox in release version",
     "CN": "线上版本小程序不能用沙箱环境下单"
   },
+   "703001": {
+    "EN": "user disable globalpay",
+    "CN": "该用户无法使用全球收银服务"
+  },
+  "703002": {
+    "EN": "user cancel picker",
+    "CN": "选择面板：用户取消"
+  },
+  "703003": {
+    "EN": "already picked",
+    "CN": "选择面板：用户已选择，无需重复调用"
+  },
+  "703004": {
+    "EN": "load picker timeout",
+    "CN": "选择面板：打开超时"
+  },
+  "703005": {
+    "EN": "picker already open",
+    "CN": "选择面板：已打开"
+  },
+  "703006": {
+    "EN": "user unpicked payment method",
+    "CN": "用户未选择支付方式，请先调用 openMethodPicker"
+  },
+  "703007": {
+    "EN": "requestGlobalPayment already end",
+    "CN": "支付已结束"
+  },
+  "703008": {
+    "EN": "input info error",
+    "CN": "传入的订单信息错误"
+  },
+  "703009": {
+    "EN": "input info is inconsistent with the user's selection",
+    "CN": "传入的订单信息对应的支付方式与用户选择的不一致"
+  },
+  "703010": {
+    "EN": "open paypage error",
+    "CN": "打开支付页面失败"
+  },
+  "703011": {
+    "EN": "call abort",
+    "CN": "由于调用 abort 接口，中断支付流程。"
+  },
+  "703012": {
+    "EN": "request timeout",
+    "CN": "超时未调用 requestGlobalPayment"
+  },
+  "703013": {
+    "EN": "request end",
+    "CN": "支付结束，但无法判断用户是否成功支付。"
+  },
+  "703014": {
+    "EN": "user unpicked payment method",
+    "CN": "用户未选择支付方式，请先调用 openMethodPicker"
+  },
+  "703015": {
+    "EN": "requestGlobalPayment already end",
+    "CN": "支付已结束"
+  },
+  "703016": {
+    "EN": "user is paying",
+    "CN": "用户正在支付页面中"
+  },
 }

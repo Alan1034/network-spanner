@@ -15,7 +15,7 @@ export const sixxx = {
   },
   "600001": {
     "EN": "cronet component error",
-    "CN": "cronet组件错误，详细错误参考返回中的errMsg字段。参考链接"
+    "CN": "cronet组件错误，详细错误参考返回中的errMsg字段。参考cronet源码net_error_list 或 net_error_list"
   },
   "600002": {
     "EN": "url not in domain list",
