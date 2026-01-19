@@ -20,4 +20,23 @@ const toUTCDate = (localDate = new Date(), toZero = false) => {
   return res;
 };
 
-export default { toLocalDate, toUTCDate };
+// const getStartOfMonth = (date) => {
+//   date = new Date(date);
+//   return new Date(date.getFullYear(), date.getMonth(), 1);
+// };
+
+const getStartOfMonth = (date) => {
+  const d = new Date(date);
+  d.setDate(1);
+  return d;
+};
+
+const getEndOfMonth = (date) => {
+  const d = new Date(date);
+  // 将日期设置为下个月的第一天
+  d.setMonth(d.getMonth() + 1);
+  d.setDate(0);
+  return d;
+};
+
+export default { toLocalDate, toUTCDate, getStartOfMonth, getEndOfMonth };
