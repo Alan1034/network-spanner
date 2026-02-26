@@ -43,6 +43,9 @@ const queryToData = (query = {}) => {
         if (/[{]+/g.test(element) && /[}]+/g.test(element)) {
           query[key] = JSON.parse(element);
         }
+        if (/[\[]+/g.test(element) && /[\]]+/g.test(element)) {
+          query[key] = JSON.parse(element);
+        }
       } catch (error) {
         // console.warn(error);
       }
